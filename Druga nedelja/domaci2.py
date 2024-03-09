@@ -778,6 +778,231 @@ def putovanje(destinacije,budzet):
     return ostaje
 # print(putovanje([1453, 1200, 350, 678, 2330], 2350))
 # 84.
+def restoran(kapacitet, gosti):
+    fali = gosti - sum(kapacitet) 
+    stolova = fali / 4
+    return math.ceil(stolova)
+# print(restoran([4, 6, 2, 8, 5], 34))
+# 85.
+def rezervacija_bioskop(slobodno, n):
+    potrebno = 0
+    for i in sorted(slobodno, reverse=True):
+        if n - i <= 0:
+            potrebno += 1
+            break
+        elif n - i > 0:
+            potrebno += 1
+            n = n-i
+    return potrebno
+# print(rez_bioskop([4, 6, 2, 8, 5], 15))
+# 86.
+def absolute_of_even_sum(niz_brojeva):
+    suma = 0
+    for i in niz_brojeva:
+        if i < 0 and i % 2 == 0:
+            suma += abs(i)
+    return(suma)
+# print(absolute_of_even_sum([-2, 7, -5, 3, 1, -4]))
+# 87.
+def presek_liste(a, b):
+    a_skup = set(a)
+    b_skup = set(b)
+    return list(a_skup & b_skup)
+# print(presek_liste([1, 2, 'a'], ['a', 2]))
+# print(presek_liste([2, 3, 4], [1, 1, 7]))
+# 88.
+def br_elemenata(a, max):
+    manji = 0
+    for i in a:
+        if i < max:
+            manji += 1
+    return manji
+# print(br_elemenata([-1,0,5],-2))
+# 89.
+def br_elemenata(a):
+    return suprotna_vrednost(a)
+# print(br_elemenata([1, 2, -1, 3, -3]))
+# print(br_elemenata([20, 10, -10, 100]))
+# 90.
+def update_list(a, x):
+    for i in range(len(a)):
+        if a[i] % 2 == 0:
+            a[i] += x
+    return a
+# print(update_list([1, 2, -1, 3, -4], 3))
+# print(update_list([21, 10, -10, 100], 5))
+# 91.
+def second_max(a):
+    return sorted(a, reverse=True)[1]
+# print(second_max([1, 22, 33, 44]))
+# 92.
+def unos_proizvoda(n):
+    i = 1
+    lista_proizvoda = []
+    while n > 0:
+        naziv = input(f'Unesite naziv {i}. proizvoda: ')
+        opis = input(f'Unesite opis {i}. proizvoda: ')
+        cena = float(input(f'Unesite cenu {i}. proizvoda: '))
+        broj_artikala = int(input(f'Unesite broj artikala {i}. proizvoda: '))
+        proizvod = {
+            'naziv': naziv,
+            'opis': opis,
+            'cena': cena,
+            'broj_artikala': broj_artikala
+        }
+        lista_proizvoda.append(proizvod)
+        n -= 1
+        i += 1
+    return lista_proizvoda
+
+def pro_naziv(proizvodi, search_term):
+    for proiz in proizvodi:
+        if proiz['naziv'].find(search_term) == 0:
+            return proiz
+# proizvodi = (unos_proizvoda(2))
+# print(pro_naziv(proizvodi, 'ko'))  
+# 93.
+def igrice(lista_igrica):
+    x = int(input('Unesite min ocenu: '))
+    y = input('Unesite zeljenog izdavaca: ')
+    return [igrica for igrica in lista_igrica if igrica['ocena'] > x and igrica['izdavac'] == y]
+
+# igricee = [
+#     {'ime': 'kola', 'izdavac':'pop', 'godina_izlaska':2020,'ocena':6.7},
+#     {'ime': 'gta', 'izdavac':'pop', 'godina_izlaska':2019,'ocena':8.9},
+#     {'ime': 'lets play', 'izdavac':'nin', 'godina_izlaska':2023,'ocena':7.5},
+#     {'ime': 'tenis', 'izdavac':'pop', 'godina_izlaska':2012,'ocena':3.5}
+# ]
+# print(igrice(igricee))
+
+# 94.
+def get_ewfbyr(string, slovo):
+    
+    s = string.split(' ')
+    # reci = []
+    # for i in s:
+    #     if len(i) % 2 == 0 and slovo not in i:
+    #         reci.append(i)
+    # return reci
+    reci = [i for i in s if len(i) % 2 == 0 and slovo not in i]
+    return reci
+# print(get_ewfbyr('words with even number of letters without character d', 'd'))
+# 95.
+def longest_increasing(input_list):
+    najduzi = [input_list[0]]
+    trenutni = [input_list[0]]
+
+    for i in range(1, len(input_list)):
+        if input_list[i-1] > 0 and input_list[i] >= input_list[i - 1]:
+            trenutni.append(input_list[i])
+            if len(trenutni) > len(najduzi):
+                najduzi = trenutni[:]
+        else:
+            trenutni = [input_list[i]]
+
+    return najduzi
+# print(longest_increasing([1, 2, 3, -1, 0, 5, 6, 7, 10, 10, 1]))
+# 96.
+def razbiti_string(string, number):
+    lista = []
+    for i in range(0, len(string), number):
+        lista.append(string[i:i+number])
+    if len(lista[-1]) < number:
+        lista[-1] = lista[-1] + '*' * (number - len(lista[-1]))
+    return lista
+# print(razbiti_string('danas polažemo test', 5))
+# print(razbiti_string('kurs web program.', 6))
+# print(razbiti_string('da', 7))
+# 97.
+# proizvodi = unos_proizvoda(1)
+def trguje(proizvodi, naziv, raspolozivi_novac):
+    for proizvod in proizvodi:
+        if proizvod['naziv'] == naziv:
+            cena = proizvod['cena']
+            broj = proizvod['broj_artikala']
+            ukupno = raspolozivi_novac // cena
+            if ukupno > broj:
+                return int(broj)
+            else:
+                return int(ukupno)
+# print(trguje(proizvodi, 'lampa', 10))
+# 98.
+def jednostavna_akcije(zahtev):
+    deo = zahtev.split(' ')
+    kolicina = int(deo[1])
+    cena = float(deo[2])
+    status = deo[3]
+
+    if status == 'B':
+        return kolicina * cena, 0
+    elif status == 'S':
+        return 0, kolicina * cena
+def slozena(zahtev):
+    ukupno_kupljenih = 0
+    ukupno_prodatih = 0
+    akcije = zahtev.split(',')
+    for akcija in akcije:
+        kupljena, prodata = jednostavna_akcije(akcija)
+        ukupno_kupljenih += kupljena
+        ukupno_prodatih += prodata
+    
+    print(f'Buy:{round(ukupno_kupljenih, 2)} Sell:{round(ukupno_prodatih, 2)}')
+# slozena('ZNG 1300 2.66 B,NY 50 56.32 B,OWW 1000 11.623 B,OGG 20 580.1 B')
+# 99.
+def split_string(string, number):  
+    lista = []
+    for i in range(0, len(string), number):
+        lista.append(string[i:i+number])
+    return lista
+# print(split_string('kurs web program.', 6))
+# 100.
+def ima_veliko_slovo(string):
+    for slovo in string:
+        if slovo.isupper():
+            return True
+    return False
+def ima_malo_slovo(string):
+    for slovo in string:
+        if slovo.islower():
+            return True
+    return False
+def ima_broj(string):
+    for slovo in string:
+        if slovo.isdigit():
+            return True
+    return False
+def check_password (input_string, min_string_len, flagUpper, flagLower, flagDigit):
+    upper = ima_veliko_slovo(input_string)
+    lower = ima_malo_slovo(input_string)
+    digit = ima_broj(input_string)
+    if len(input_string) > min_string_len and flagUpper == upper and flagLower == lower and flagDigit == digit:
+        return True
+    else:
+        return False
+# print(check_password('Passw123', 7, True, False, True))
+# 101.
+def vreme_do_autobusa(vreme):
+    sat, min = map(int, vreme.split(':'))
+    minuti = sat * 60 + min
+    autobus = 6 * 60
+    vreme_do = autobus - minuti - 5
+    return max(vreme_do, 0)
+# print(vreme_do_autobusa('05:00'))
+# 102.
+def vrata(n):
+    vrata = [False] * n
+    
+    for i in range(1, n):
+        for j in range(1, n):
+            if j % i == 0:
+                vrata[j] = not(vrata[j])
+    otvorena = 0
+    for i in range(1, n):
+        if vrata[i] == 1:
+            otvorena += 1
+
+    return otvorena
+# print(vrata(5))
 
 
 
