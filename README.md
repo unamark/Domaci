@@ -1,1 +1,1 @@
-# Domaci
+# Basic tasks in Python  
