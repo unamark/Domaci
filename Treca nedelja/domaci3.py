@@ -463,6 +463,7 @@ class Turnir:
         for igrac in self.__lista_igraca:
             if igrac[0] == ime_igraca:
                 self.__lista_igraca.remove(igrac)
+                print(f'Igrac {ime_igraca} je obrisan.')
                 break
 
     def prikazi_najboljeg_igraca(self):
@@ -714,6 +715,7 @@ class Company:
 
 kompanija_A = Company('Coinis', 'ad-tech', 150000, 1000)
 kompanija_B = Company('Google', 'tehnology', 5000, 1)
+'''
 kompanija_A.add_employee(
     {'name': 'Una', 'surname': 'Markovic', 'salary': 6600})
 kompanija_A.add_employee({'name': 'John', 'surname': 'Doe', 'salary': 4500})
@@ -726,7 +728,7 @@ kompanija_A.add_employee(
 
 kompanija_B.add_employee(
     {'name': 'Sundrai', 'surname': 'Pichai', 'salary': 5500})
-
+'''
 # print(kompanija_B.can_pay_employees())
 # print(kompanija_A > kompanija_B)
 # print(kompanija_B)
@@ -738,3 +740,226 @@ kompanija_B.add_employee(
 # kompanija_A.set_balance(50000)
 # print(kompanija_A.get_balance())
 # print(kompanija_A)
+
+
+# 13.
+class Student:
+    def __init__(self, ime, prezime, godina):
+        self.__ime = ime
+        self.__prezime = prezime
+        self.__predmeti = []
+        self.__godina = godina
+
+    def get_ime(self):
+        return self.__ime
+
+    def set_ime(self, ime):
+        self.__ime = ime
+
+    def get_prezime(self):
+        return self.__prezime
+
+    def set_prezime(self, prezime):
+        self.__prezime = prezime
+
+    def get_godina(self):
+        return self.__godina
+
+    def set_godina(self, godina):
+        if 0 < godina <= 8:
+            self.__godina = godina
+        else:
+            print('Neodgovarajuca godina studija.')
+
+    def insert_subject(self, predmet):
+        self.__predmeti.append(predmet)
+
+    def remove_subject(self, predmet):
+        for i in self.__predmeti:
+            if i['naziv'] == predmet:
+                self.__predmeti.remove(i)
+                print(f'Predmet {predmet} je obrisan.')
+                break
+        else:
+            print(f'Predmet ne postoji, niste polozili {predmet}.')
+
+    def compute_average(self):
+        ukupan_broj_ostvarenih_kredita = 0
+        suma = 0
+        if len(self.__predmeti) == 0:
+            return 0
+        else:
+            for predmet in self.__predmeti:
+                ocena = predmet['ocena']
+                if ocena == 'A':
+                    suma += 10*predmet['broj_kredita']
+                    ukupan_broj_ostvarenih_kredita += predmet['broj_kredita']
+                elif ocena == 'B':
+                    suma += 9*predmet['broj_kredita']
+                    ukupan_broj_ostvarenih_kredita += predmet['broj_kredita']
+                elif ocena == 'C':
+                    suma += 8*predmet['broj_kredita']
+                    ukupan_broj_ostvarenih_kredita += predmet['broj_kredita']
+                elif ocena == 'D':
+                    suma += 7*predmet['broj_kredita']
+                    ukupan_broj_ostvarenih_kredita += predmet['broj_kredita']
+                elif ocena == 'E':
+                    suma += 6*predmet['broj_kredita']
+                    ukupan_broj_ostvarenih_kredita += predmet['broj_kredita']
+                else:
+                    continue
+
+            return round(suma/ukupan_broj_ostvarenih_kredita, 2)
+
+    def __str__(self):
+        return f'ime: {self.__ime}, prezime: {self.__prezime}, prosek: {self.compute_average()}'
+
+
+predmeti = [
+    {'naziv': 'Periferije i interfejsi', 'ocena': 'A', 'broj_kredita': 6},
+    {'naziv': 'Engleski jezik 1', 'ocena': 'B', 'broj_kredita': 2},
+    {'naziv': 'Programiranje 1', 'ocena': 'E', 'broj_kredita': 6},
+    {'naziv': 'Programiranje 2', 'ocena': 'C', 'broj_kredita': 5},
+    {'naziv': 'Arhitektura racunarskih sistema', 'ocena': 'B', 'broj_kredita': 7},
+    {'naziv': 'Softver inzenjering', 'ocena': 'A', 'broj_kredita': 6},
+    {'naziv': 'Fizika', 'ocena': 'B', 'broj_kredita': 6},
+    {'naziv': 'Kriptografija', 'ocena': 'D', 'broj_kredita': 4}
+]
+
+student1 = Student('Ana', 'Jovanovic', 4)
+'''student1.insert_subject(
+    {'naziv': 'Engleski jezik 1', 'ocena': 'B', 'broj_kredita': 2})
+student1.insert_subject(
+    {'naziv': 'Programiranje 1', 'ocena': 'E', 'broj_kredita': 6})
+student1.insert_subject({'naziv': 'Fizika', 'ocena': 'B', 'broj_kredita': 6})
+student1.insert_subject(
+    {'naziv': 'Periferije i interfejsi', 'ocena': 'A', 'broj_kredita': 6})
+'''
+# student1.set_ime('Goran')
+# print(student1)
+
+student2 = Student('Kosta', 'Zivkovic', 7)
+# print(student2.compute_average())
+'''student2.insert_subject(
+    {'naziv': 'Engleski jezik 1', 'ocena': 'B', 'broj_kredita': 2})
+student2.insert_subject(
+    {'naziv': 'Programiranje 1', 'ocena': 'D', 'broj_kredita': 6})
+student2.insert_subject(
+    {'naziv': 'Programiranje 2', 'ocena': 'F', 'broj_kredita': 5})
+student2.insert_subject(
+    {'naziv': 'Arhitektura racunarskih sistema', 'ocena': 'B', 'broj_kredita': 7})
+student2.insert_subject(
+    {'naziv': 'Softver inzenjering', 'ocena': 'A', 'broj_kredita': 6})
+student2.insert_subject(
+    {'naziv': 'Kriptografija', 'ocena': 'A', 'broj_kredita': 4})'''
+# print(student2.compute_average())
+# student2.remove_subject('Programiranje 2')
+# student2.set_godina(0)
+# print(student2)
+
+
+# 14.
+class Drzava:
+    def __init__(self, name, population, border, cities):
+        self.__name = name
+        self.__population = population
+        self.__border = border
+        self.__cities = cities
+
+    def get_name(self):
+        return self.__name
+
+    def set_name(self, ime):
+        self.__name = ime
+
+    def get_population(self):
+        return self.__population
+
+    def set_population(self, broj_stanovnika):
+        if broj_stanovnika > 0:
+            self.__population = broj_stanovnika
+
+    def get_border(self):
+        return self.__border
+
+    def set_border(self, granice):
+        self.__border = granice
+
+    def get_cities(self):
+        return self.__cities
+
+    def set_cities(self, gradovi):
+        self.__cities = gradovi
+
+    def add_border(self, nova_drzava):
+        self.__border.append(nova_drzava)
+
+    def grad_najmanje_stanovnika(self):
+        if self.__cities:
+            grad = min(self.__cities, key=lambda x: x['broj_stanovnika'])
+            print('Grad sa najmanje stanovnika je: ', grad['naziv'])
+        else:
+            return None
+
+    def grad_najvise_stanovnika(self):
+        if not self.__cities:
+            return None
+        grad = max(self.__cities, key=lambda x: x['broj_stanovnika'])
+        print('Grad sa najvise stanovnika je: ', grad['naziv'])
+
+    def __str__(self):
+        gradovi = [grad['naziv'] for grad in self.__cities]
+        return f'Drzava: {self.__name}; Broj stanovnika: {self.__population}; Gradovi: {gradovi}.'
+
+
+class Federacija(Drzava):
+    def __init__(self, name, population, border, cities, countries):
+        super().__init__(name, population, border, cities)
+        self.__countries = countries
+
+    def get_countries(self):
+        return self.__countries
+
+    def set_countries(self, drzave):
+        self.__countries = drzave
+
+    def __lt__(self, druga):
+        return len(self.__countries) < len(druga.__countries)
+
+    def __gt__(self, druga):
+        return len(self.__countries) > len(druga.__countries)
+
+    def __eq__(self, druga):
+        return len(self.__countries) == len(druga.__countries)
+
+    def __str__(self):
+        drzave = [drzava for drzava in self.__countries]
+        return f'Federacija: {self.get_name()}; Broj drzava: {len(self.__countries)}; Drzave: {drzave}.'
+
+
+drzava1 = Drzava(
+    'Crna Gora', 622781, ['Srbija', 'Hrvatska',
+                          'Bosna i Hercegovina', 'Albanija'],
+    [
+        {'naziv': 'Podgorica', 'broj_stanovnika': 150977},
+        {'naziv': 'Nikšić', 'broj_stanovnika': 58212},
+        {'naziv': 'Pljevlja', 'broj_stanovnika': 19235},
+        {'naziv': 'Herceg Novi', 'broj_stanovnika': 12343}
+    ]
+)
+# drzava1.grad_najmanje_stanovnika()
+# drzava1.grad_najvise_stanovnika()
+# print(drzava1)
+drzava2 = Drzava('Srbija', 7000000, ['Hrvatska', 'Bosna i Hercegovina'], [
+                 {'naziv': 'Beograd', 'broj_stanovnika': 1500000}, {'naziv': "Novi Sad", 'broj_stanovnika': 500000}])
+# print(drzava2)
+# drzava2.add_border('Crna Gora')
+# print(drzava2.get_border())
+federacija1 = Federacija('Evropska unija', 500000000, ['Srbija', 'Hrvatska'], [{'naziv': 'Berlin', 'broj_stanovnika': 3500000}, {
+    'naziv': 'Pariz', 'broj_stanovnika': 2200000}], ['Francuska', 'Nemacka'])
+federacija2 = Federacija('Američka federacija', 50, [
+                         'SAD', 'Kanada', 'Meksiko'], [], ['SAD', 'Kanada', 'Meksiko'])
+
+# print(federacija2)
+# print(federacija1.get_countries())
+# print(federacija1 > federacija2)
