@@ -815,17 +815,6 @@ class Student:
         return f'ime: {self.__ime}, prezime: {self.__prezime}, prosek: {self.compute_average()}'
 
 
-predmeti = [
-    {'naziv': 'Periferije i interfejsi', 'ocena': 'A', 'broj_kredita': 6},
-    {'naziv': 'Engleski jezik 1', 'ocena': 'B', 'broj_kredita': 2},
-    {'naziv': 'Programiranje 1', 'ocena': 'E', 'broj_kredita': 6},
-    {'naziv': 'Programiranje 2', 'ocena': 'C', 'broj_kredita': 5},
-    {'naziv': 'Arhitektura racunarskih sistema', 'ocena': 'B', 'broj_kredita': 7},
-    {'naziv': 'Softver inzenjering', 'ocena': 'A', 'broj_kredita': 6},
-    {'naziv': 'Fizika', 'ocena': 'B', 'broj_kredita': 6},
-    {'naziv': 'Kriptografija', 'ocena': 'D', 'broj_kredita': 4}
-]
-
 student1 = Student('Ana', 'Jovanovic', 4)
 '''student1.insert_subject(
     {'naziv': 'Engleski jezik 1', 'ocena': 'B', 'broj_kredita': 2})
