@@ -1,0 +1,4 @@
+Naziv, Opis, Godina, Kolicina, Cena
+Marko,Markovic,2,8.6
+Boris,Boricic,3,7.9
+Novak,Novovic,3,6.9
